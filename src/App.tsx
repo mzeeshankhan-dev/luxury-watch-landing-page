@@ -6,6 +6,8 @@ import Craftsmanship from './components/Craftsmanship';
 import AtelierBand from './components/AtelierBand';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import Feature from './components/Feature';
+import MaterialDetails from './components/MaterialDetails';
 
 export default function App() {
   return (
@@ -13,8 +15,10 @@ export default function App() {
       <Header />
       <Hero />
       <Marquee />
-      <Collection />
       <Craftsmanship />
+      <Collection />
+      <Feature />
+      <MaterialDetails/>
       <AtelierBand />
       <CTA />
       <Footer />

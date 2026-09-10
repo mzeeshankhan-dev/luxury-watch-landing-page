@@ -3,6 +3,9 @@ import watch2 from '../assets/watch2.webp';
 import watch3 from '../assets/watch3.webp';
 import watch4 from '../assets/watch4.webp';
 
+import halfWatch from '../assets/images/half-watch.jpg'
+import AtelierImage from '../assets/images/ATELIER_IMAGE.webp'
+
 export interface Watch {
   id: string;
   name: string;
@@ -16,7 +19,6 @@ export interface Watch {
   panel: string;
 }
 
-// Product photography sourced from Unsplash, free to use under the Unsplash License.
 export const WATCHES: Watch[] = [
   {
     id: 'meridian',
@@ -72,8 +74,6 @@ export const WATCHES: Watch[] = [
   },
 ];
 
-export const MOVEMENT_IMAGE =
-  'https://images.unsplash.com/photo-1646724810360-abfa1bb76d6d?auto=format&fit=crop&w=1600&q=80';
+export const HALF_IMAGE = halfWatch;
 
-export const ATELIER_IMAGE =
-  'https://images.unsplash.com/photo-1704783339057-3fb087d3bc98?auto=format&fit=crop&w=1800&q=80';
+export const ATELIER_IMAGE =AtelierImage;

@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { WATCHES } from '../data/watches';
-import { useOnScreen } from '../hooks/useOnScreen';
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { WATCHES } from "../data/watches";
+import { useOnScreen } from "../hooks/useOnScreen";
 
 export default function Collection() {
   const { ref, isVisible } = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
@@ -10,15 +10,15 @@ export default function Collection() {
     <section
       id="collection"
       ref={ref}
-      style={{ backgroundColor: '#15130F' }}
-      className="px-4 sm:px-10 py-20 sm:py-28"
+      style={{ backgroundColor: "#15130F" }}
+      className="px-4 py-20 sm:px-10 sm:py-28"
     >
       <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 sm:mb-16 gap-4">
+        <div className="flex flex-col gap-4 mb-12 sm:flex-row sm:items-end sm:justify-between sm:mb-16">
           <div>
             <p
               className="text-[11px] mb-3"
-              style={{ color: '#C9A24C', letterSpacing: '0.14em' }}
+              style={{ color: "#C9A24C", letterSpacing: "0.14em" }}
             >
               THE CURRENT COLLECTION
             </p>
@@ -26,8 +26,8 @@ export default function Collection() {
               style={{
                 fontFamily: "'Fraunces', serif",
                 fontWeight: 500,
-                fontSize: 'clamp(28px, 4vw, 46px)',
-                color: '#EDE7D8',
+                fontSize: "clamp(28px, 4vw, 46px)",
+                color: "#EDE7D8",
                 maxWidth: 560,
                 lineHeight: 1.1,
               }}
@@ -36,15 +36,15 @@ export default function Collection() {
             </h2>
           </div>
           <p
-            className="text-sm max-w-xs"
-            style={{ color: '#9C9686', lineHeight: 1.6 }}
+            className="max-w-xs text-sm"
+            style={{ color: "#9C9686", lineHeight: 1.6 }}
           >
-            Every reference is produced in small runs and assembled by a
-            single watchmaker from first screw to final polish.
+            Every reference is produced in small runs and assembled by a single
+            watchmaker from first screw to final polish.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
           {WATCHES.map((watch, index) => (
             <WatchCard
               key={watch.id}
@@ -87,16 +87,17 @@ function WatchCard({
       className="block group"
       style={{
         opacity: shown ? 1 : 0,
-        transform: shown ? 'translateY(0)' : 'translateY(16px)',
-        transition: 'opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1)',
+        transform: shown ? "translateY(0)" : "translateY(16px)",
+        transition:
+          "opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1)",
       }}
     >
       <div
         style={{
           borderRadius: 10,
-          overflow: 'hidden',
-          aspectRatio: '4 / 5',
-          border: '1px solid rgba(201,162,76,0.16)',
+          overflow: "hidden",
+          aspectRatio: "4 / 5",
+          border: "1px solid rgba(201,162,76,0.16)",
           marginBottom: 16,
         }}
       >
@@ -104,12 +105,13 @@ function WatchCard({
           src={watch.image}
           alt={`${watch.name}, ${watch.category.toLowerCase()} watch`}
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            transform: hovered ? 'scale(1.045)' : 'scale(1)',
-            transition: 'transform 500ms cubic-bezier(0.4,0,0.2,1)',
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            transform: hovered ? "scale(1.045)" : "scale(1)",
+            transition: "transform 500ms cubic-bezier(0.4,0,0.2,1)",
           }}
+          loading="lazy"
         />
       </div>
       <div className="flex items-start justify-between">
@@ -118,15 +120,15 @@ function WatchCard({
             style={{
               fontFamily: "'Fraunces', serif",
               fontWeight: 500,
-              fontSize: '18px',
-              color: '#EDE7D8',
+              fontSize: "18px",
+              color: "#EDE7D8",
             }}
           >
             {watch.name}
           </p>
           <p
-            className="text-xs mt-1"
-            style={{ color: '#9C9686', letterSpacing: '0.04em' }}
+            className="mt-1 text-xs"
+            style={{ color: "#9C9686", letterSpacing: "0.04em" }}
           >
             {watch.category} &middot; {watch.price}
           </p>
@@ -134,10 +136,10 @@ function WatchCard({
         <ArrowUpRight
           size={18}
           style={{
-            color: '#C9A24C',
+            color: "#C9A24C",
             marginTop: 3,
-            transform: hovered ? 'translate(2px, -2px)' : 'translate(0,0)',
-            transition: 'transform 250ms',
+            transform: hovered ? "translate(2px, -2px)" : "translate(0,0)",
+            transition: "transform 250ms",
           }}
         />
       </div>
