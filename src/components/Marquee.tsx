@@ -21,7 +21,7 @@ export default function Marquee() {
         borderBottom: '1px solid rgba(201,162,76,0.22)',
         overflow: 'hidden',
       }}
-      className="py-5 sm:py-6"
+      className="z-10 py-5 sm:py-6"
     >
       <div
         className="flex whitespace-nowrap"

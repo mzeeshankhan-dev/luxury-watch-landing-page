@@ -1,3 +1,4 @@
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { WATCHES } from "../data/watches";
@@ -12,6 +13,8 @@ const GRAIN_SVG =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>";
 
 export default function Hero() {
+  const { scrollYProgress } = useScroll();
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(
@@ -115,15 +118,24 @@ export default function Hero() {
   const activeWatch = WATCHES[activeIndex];
 
   return (
-    <div
+    <motion.div
       id="top"
       style={{
+        transform: useTransform(
+          scrollYProgress,
+          [0, 0.2],
+          [
+            "perspective(1000px) rotateX(0deg)",
+            "perspective(1000px) rotateX(-20deg)",
+          ],
+        ),
+
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="relative w-full overflow-hidden"
+      className="sticky top-0 w-full h-screen overflow-hidden "
     >
       <div
         className="relative w-full overflow-hidden"
@@ -287,7 +299,7 @@ export default function Hero() {
           <ArrowRight className="w-4 h-4 ml-2" strokeWidth={2} />
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
