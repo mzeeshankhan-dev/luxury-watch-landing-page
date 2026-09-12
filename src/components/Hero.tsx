@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, type Variants, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { WATCHES } from "../data/watches";
@@ -14,6 +14,33 @@ const GRAIN_SVG =
 
 export default function Hero() {
   const { scrollYProgress } = useScroll();
+
+  const container = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const item: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -165,7 +192,12 @@ export default function Hero() {
           className="absolute inset-x-0 flex items-center justify-center pointer-events-none select-none"
           style={{ zIndex: 2, top: "14%" }}
         >
-          <span
+          <motion.span
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 0.3, y: 0 }}
+            transition={{
+              duration: 0.8,
+            }}
             key={activeWatch.category}
             style={{
               fontFamily: "'Fraunces', serif",
@@ -182,7 +214,7 @@ export default function Hero() {
             }}
           >
             {activeWatch.category}
-          </span>
+          </motion.span>
         </div>
 
         <div className="absolute inset-0" style={{ zIndex: 3 }}>
@@ -221,17 +253,23 @@ export default function Hero() {
         </div>
 
         {/* Bottom-left: watch info + nav buttons */}
-        <div
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={container}
           className="absolute bottom-6 left-4 sm:bottom-12 sm:left-10"
           style={{ zIndex: 60, maxWidth: 340 }}
         >
-          <p
+          <motion.p
+            variants={item}
             className="text-[11px] mb-2"
             style={{ color: "#C9A24C", letterSpacing: "0.14em", opacity: 0.9 }}
           >
             {activeWatch.reference} &middot; {activeWatch.price}
-          </p>
-          <p
+          </motion.p>
+          <motion.p
+            variants={item}
             className="mb-2 sm:mb-3"
             style={{
               fontFamily: "'Fraunces', serif",
@@ -242,8 +280,9 @@ export default function Hero() {
             }}
           >
             {activeWatch.name}
-          </p>
-          <p
+          </motion.p>
+          <motion.p
+            variants={item}
             className="hidden mb-6 text-sm sm:block"
             style={{
               color: "#D8D2C2",
@@ -253,8 +292,8 @@ export default function Hero() {
             }}
           >
             {activeWatch.blurb}
-          </p>
-          <div className="flex items-center gap-3">
+          </motion.p>
+          <motion.div variants={item} className="flex items-center gap-3">
             <NavButton
               icon={<ArrowLeft size={20} strokeWidth={2} />}
               onClick={() => navigate("prev")}
@@ -276,11 +315,16 @@ export default function Hero() {
               {String(activeIndex + 1).padStart(2, "0")} /{" "}
               {String(count).padStart(2, "0")}
             </span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom-right link */}
-        <a
+        <motion.a
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.4,
+          }}
           href="#collection"
           className="absolute flex items-center bottom-6 right-4 sm:bottom-12 sm:right-10 group"
           style={{ zIndex: 60, color: "#EDE7D8", textDecoration: "none" }}
@@ -297,7 +341,7 @@ export default function Hero() {
             View full collection
           </span>
           <ArrowRight className="w-4 h-4 ml-2" strokeWidth={2} />
-        </a>
+        </motion.a>
       </div>
     </motion.div>
   );

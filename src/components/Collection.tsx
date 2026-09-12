@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { WATCHES } from "../data/watches";
 import { useOnScreen } from "../hooks/useOnScreen";
 
 export default function Collection() {
-  const { ref, isVisible } = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
+  const { ref,} = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
 
   return (
     <section
@@ -16,13 +17,25 @@ export default function Collection() {
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col gap-4 mb-12 sm:flex-row sm:items-end sm:justify-between sm:mb-16">
           <div>
-            <p
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+              }}
               className="text-[11px] mb-3"
               style={{ color: "#C9A24C", letterSpacing: "0.14em" }}
             >
               THE CURRENT COLLECTION
-            </p>
-            <h2
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+              }}
               style={{
                 fontFamily: "'Fraunces', serif",
                 fontWeight: 500,
@@ -33,15 +46,21 @@ export default function Collection() {
               }}
             >
               Four cases, one standard of finishing.
-            </h2>
+            </motion.h2>
           </div>
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.4,
+            }}
             className="max-w-xs text-sm"
             style={{ color: "#9C9686", lineHeight: 1.6 }}
           >
             Every reference is produced in small runs and assembled by a single
             watchmaker from first screw to final polish.
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
@@ -49,8 +68,9 @@ export default function Collection() {
             <WatchCard
               key={watch.id}
               watch={watch}
-              delay={index * 90}
-              visible={isVisible}
+              direction={index % 2 === 0 ? "left" : "right"}
+              distance={index % 2 === 0 ? 70 : 70}
+              delay={0}
             />
           ))}
         </div>
@@ -62,34 +82,38 @@ export default function Collection() {
 function WatchCard({
   watch,
   delay,
-  visible,
+  direction,
+  distance,
 }: {
   watch: (typeof WATCHES)[number];
   delay: number;
-  visible: boolean;
+  direction: "left" | "right";
+  distance: number;
 }) {
   const [hovered, setHovered] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    if (visible && !shown) {
-      timeoutRef.current = setTimeout(() => setShown(true), delay);
-    }
-    return () => clearTimeout(timeoutRef.current);
-  }, [visible, delay, shown]);
 
   return (
-    <a
+    <motion.a
       href="#contact"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="block group"
-      style={{
-        opacity: shown ? 1 : 0,
-        transform: shown ? "translateY(0)" : "translateY(16px)",
-        transition:
-          "opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1)",
+      initial={{
+        opacity: 0,
+        x: direction === "left" ? -distance : distance,
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
+      transition={{
+        duration: 0.7,
+        delay: delay,
+        ease: [0.4, 0, 0.2, 1],
       }}
     >
       <div
@@ -143,6 +167,6 @@ function WatchCard({
           }}
         />
       </div>
-    </a>
+    </motion.a>
   );
 }
