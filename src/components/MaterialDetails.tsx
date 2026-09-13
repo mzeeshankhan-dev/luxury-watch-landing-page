@@ -1,3 +1,4 @@
+import { motion ,type Variants} from "framer-motion";
 import { useOnScreen } from "../hooks/useOnScreen";
 import watchOnHand from "../assets/images/watchOnHand.webp";
 
@@ -44,6 +45,32 @@ export const premiumData: PremiumMaterialsData = {
 const MaterialDetails = () => {
   const { ref } = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
 
+  const container = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  const item: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section
       id="material"
@@ -52,14 +79,22 @@ const MaterialDetails = () => {
       className="px-4 py-20 sm:px-10 sm:py-28"
     >
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 sm:gap-6 gap-6 items-center">
-        <div className="left">
-          <p
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true,amount: 0.3 }}
+          variants={container}
+          className="left"
+        >
+          <motion.p
+            variants={item}
             className="text-[11px] mb-3"
             style={{ color: "#C9A24C", letterSpacing: "0.14em" }}
           >
             {premiumData.category}
-          </p>
-          <h2
+          </motion.p>
+          <motion.h2
+            variants={item}
             style={{
               fontFamily: "'Fraunces', serif",
               fontWeight: 500,
@@ -72,16 +107,18 @@ const MaterialDetails = () => {
             className="max-w-xs"
           >
             {premiumData.heading}
-          </h2>
-          <p
+          </motion.h2>
+          <motion.p
+            variants={item}
             className="text-sm sm:text-[15px] mb-10"
             style={{ color: "#B7B0A0", lineHeight: 1.75, maxWidth: 460 }}
           >
             {premiumData.description}
-          </p>
-          <div className="feature">
+          </motion.p>
+          <motion.div variants={container} className="feature">
             {premiumData.features.map((feature, index) => (
-              <div
+              <motion.div
+                variants={item}
                 key={index}
                 className="flex items-center gap-4 mt-3 feature-item"
               >
@@ -95,10 +132,11 @@ const MaterialDetails = () => {
                   <h3 className="font-semibold text-white">{feature.title}</h3>
                   <p className="text-white/50">{feature.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+
         <div
           className="relative h-full"
           style={{
@@ -123,6 +161,15 @@ const MaterialDetails = () => {
               background:
                 "linear-gradient(90deg, rgb(21, 19, 15), rgb(15 14 10 / 26%), rgb(15 14 10 / 0%))",
             }}
+          />
+          <motion.div
+            initial={{ x: "0%" }}
+            whileInView={{ x: "100%" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 1,
+            }}
+            className="bg-[#15130F] absolute inset-0"
           />
         </div>
       </div>

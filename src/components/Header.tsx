@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const NAV_LINKS = [
-  { label: "Collection", href: "#collection" },
+  { label: "Home", href: "#" },
   { label: "Craft", href: "#craft" },
-  { label: "Atelier", href: "#atelier" },
+  { label: "Collection", href: "#collection" },
+  { label: "Features", href: "#features" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -33,7 +34,7 @@ export default function Header() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration:0.5,
+          duration: 0.5,
         }}
         className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5 max-w-[1600px] mx-auto"
       >
@@ -59,10 +60,39 @@ export default function Header() {
                 backgroundColor: "#C9A24C",
                 top: "50%",
                 left: "50%",
-                transformOrigin: "50% 0%",
-                transform: "translate(-50%, -100%)",
-                animation: "tick-rotate 60s linear infinite",
-                borderRadius: 1,
+                transformOrigin: "50% 100%",
+                transform: "translate(-50%, -100%) rotate(120deg)",
+                borderRadius: 2,
+                animation: "minute-rotate 3600s linear infinite",
+                animationDelay: "-1200s",
+              }}
+            />
+
+            <span
+              className="absolute"
+              style={{
+                width: 1,
+                height: 9,
+                backgroundColor: "#E8C66A",
+                top: "50%",
+                left: "50%",
+                transformOrigin: "50% 100%",
+                transform: "translate(-50%, -100%) rotate(200deg)",
+                borderRadius: 2,
+                animation: "second-rotate 60s linear infinite",
+              }}
+            />
+
+            {/* Center pin */}
+            <span
+              className="absolute rounded-full"
+              style={{
+                width: 3,
+                height: 3,
+                backgroundColor: "#C9A24C",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
               }}
             />
           </span>
@@ -74,7 +104,7 @@ export default function Header() {
               letterSpacing: "0.01em",
             }}
           >
-            Calibre
+            Velaron
           </span>
         </a>
 

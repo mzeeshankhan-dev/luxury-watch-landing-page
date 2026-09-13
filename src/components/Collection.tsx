@@ -5,7 +5,7 @@ import { WATCHES } from "../data/watches";
 import { useOnScreen } from "../hooks/useOnScreen";
 
 export default function Collection() {
-  const { ref,} = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
+  const { ref } = useOnScreen<HTMLDivElement>({ threshold: 0.1 });
 
   return (
     <section
@@ -18,7 +18,7 @@ export default function Collection() {
         <div className="flex flex-col gap-4 mb-12 sm:flex-row sm:items-end sm:justify-between sm:mb-16">
           <div>
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
@@ -30,11 +30,12 @@ export default function Collection() {
               THE CURRENT COLLECTION
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
                 duration: 0.4,
+                delay: 0.3,
               }}
               style={{
                 fontFamily: "'Fraunces', serif",
@@ -54,6 +55,7 @@ export default function Collection() {
             viewport={{ once: true }}
             transition={{
               duration: 0.4,
+              delay: 0.3,
             }}
             className="max-w-xs text-sm"
             style={{ color: "#9C9686", lineHeight: 1.6 }}
@@ -108,7 +110,7 @@ function WatchCard({
       }}
       viewport={{
         once: true,
-        amount: 0.2,
+        amount: 0.3,
       }}
       transition={{
         duration: 0.7,

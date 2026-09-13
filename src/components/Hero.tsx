@@ -148,21 +148,12 @@ export default function Hero() {
     <motion.div
       id="top"
       style={{
-        transform: useTransform(
-          scrollYProgress,
-          [0, 0.2],
-          [
-            "perspective(1000px) rotateX(0deg)",
-            "perspective(1000px) rotateX(-20deg)",
-          ],
-        ),
-
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="sticky top-0 w-full h-screen overflow-hidden "
+      className="h-screen overflow-hidden "
     >
       <div
         className="relative w-full overflow-hidden"

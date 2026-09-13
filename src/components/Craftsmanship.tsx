@@ -19,7 +19,7 @@ export default function Craftsmanship() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.20,
       },
     },
   };
@@ -50,8 +50,8 @@ export default function Craftsmanship() {
         <motion.div
           initial={{ opacity: 0, y: 50,  scale: 0.8 }}
           whileInView={{ opacity: 1, y: 0,scale:1 }}
-          viewport={{ once: true }}
-          transition={{duration:0.5}}
+          viewport={{ once: true,amount: 0.3 }}
+          transition={{duration:0.6,}}
           style={{
             borderRadius: 14,
             overflow: "hidden",

@@ -20,10 +20,10 @@ export default function Footer() {
         backgroundColor: '#15130F',
         borderTop: '1px solid rgba(201,162,76,0.16)',
       }}
-      className="px-4 sm:px-10 pt-16 pb-8"
+      className="px-4 pt-16 pb-8 sm:px-10"
     >
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 pb-14">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 pb-14">
           <div className="col-span-2 sm:col-span-1">
             <p
               style={{
@@ -34,7 +34,7 @@ export default function Footer() {
               }}
               className="mb-3"
             >
-              Calibre
+              Velaron
             </p>
             <p className="text-xs" style={{ color: '#9C9686', lineHeight: 1.6 }}>
               By appointment &mdash; Lahore &middot; Geneva
@@ -44,7 +44,7 @@ export default function Footer() {
           {COLUMNS.map((column) => (
             <div key={column.title}>
               <p
-                className="text-xs mb-4"
+                className="mb-4 text-xs"
                 style={{ color: '#C9A24C', letterSpacing: '0.1em' }}
               >
                 {column.title.toUpperCase()}
@@ -67,11 +67,11 @@ export default function Footer() {
         </div>
 
         <div
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-8"
+          className="flex flex-col items-start justify-between gap-3 pt-8 sm:flex-row sm:items-center"
           style={{ borderTop: '1px solid rgba(237,231,216,0.08)' }}
         >
           <p className="text-xs" style={{ color: '#75705F' }}>
-            &copy; {new Date().getFullYear()} Calibre Timepieces. All rights reserved.
+            &copy; {new Date().getFullYear()} Velaron Timepieces. All rights reserved.
           </p>
           <p className="text-xs" style={{ color: '#75705F' }}>
             Photography for illustration only.

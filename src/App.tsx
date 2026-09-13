@@ -11,19 +11,17 @@ import MaterialDetails from "./components/MaterialDetails";
 
 export default function App() {
   return (
-    <div style={{ backgroundColor: "#15130F" }}>
+    <div className="overflow-x-hidden" style={{ backgroundColor: "#15130F" }}>
       <Header />
       <Hero />
-      <div className="relative mt-80 sections z-100">
-        <Marquee />
-        <Craftsmanship />
-        <Collection />
-        <Feature />
-        <MaterialDetails />
-        <AtelierBand />
-        <CTA />
-        <Footer />
-      </div>
+      <Marquee />
+      <Craftsmanship />
+      <Collection />
+      <Feature />
+      <MaterialDetails />
+      <AtelierBand />
+      <CTA />
+      <Footer />
     </div>
   );
 }
